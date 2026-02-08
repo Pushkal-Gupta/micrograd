@@ -9,6 +9,7 @@ The visualization is generated using **Graphviz**.
 
 ```text
 Visualize/
+├── README.md
 ├── __init__.py
 ├── visualizeGraph.py   # Graph drawing utilities
 ├── demoVisualize.py  # Demo script
