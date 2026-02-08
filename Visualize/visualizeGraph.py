@@ -1,6 +1,7 @@
 # brew install graphviz
 # pip install graphviz
 
+from Code.valueClass import Value
 from graphviz import Digraph
 
 def trace(root):
