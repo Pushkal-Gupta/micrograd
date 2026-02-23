@@ -1,6 +1,5 @@
 import random
 from Code.valueClass import Value
-
 class Neuron:
 
     def __init__(self,nin): #nin -> (n)umber of (in)puts
@@ -58,3 +57,8 @@ class MLP:
             ps = layer.parameters()
             params.extend(ps)
         return params
+    
+    #Resetting the gradients otherwise they keep accumulating
+    def zero_grad(self):
+        for p in self.parameters():
+            p.grad = 0.0

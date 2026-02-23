@@ -19,6 +19,7 @@ This folder slows the process down and answers questions like:
 - Where do gradients actually come from?
 - Why does backpropagation work?
 - How do simple scalar operations scale into neural networks?
+- What does a trained neural network actually learn in geometric terms?
 
 The notebooks here aim to replace ambiguity with clarity.
 
@@ -26,7 +27,7 @@ The notebooks here aim to replace ambiguity with clarity.
 
 ## What This Folder Contains
 
-This folder contains **three notebooks**, each building on the previous one. They are designed to be followed in order.
+This folder contains **four notebooks**, each building on the previous one. They are designed to be followed in order.
 
 Each notebook:
 
@@ -40,7 +41,8 @@ Each notebook:
 
 1. Start with `micrograd_basics.ipynb`
 2. Move on to `micrograd_intermediate.ipynb`
-3. Finish with `micrograd_advanced.ipynb`
+3. Continue to `micrograd_advanced.ipynb`
+4. Finish with `demo.ipynb`
 
 Do not skip ahead. Each notebook assumes understanding of the previous one.
 
@@ -97,6 +99,47 @@ At this stage, micrograd behaves like a real neural network training system, but
 
 ---
 
+### `demo.ipynb`
+
+This notebook moves from mechanics to behavior.
+
+Instead of inspecting gradients, we now observe what the network _learns_.
+
+What is covered:
+
+- Training an MLP on a non-linear dataset (two moons)
+- Mini training loop using stochastic gradient descent
+- Margin-based loss with regularization
+- Effect of learning rate scheduling
+- Visualizing the decision boundary across the input space
+
+Here the neural network stops being an abstract graph and becomes a function that reshapes space.  
+You can directly see whether the model has learned structure or memorized points.
+
+---
+
+## Visual Intuition
+
+Moves from mechanics to behavior — the network is trained on a non-linear dataset and we visualize what it learns.
+
+### Raw Dataset (Before Learning)
+
+<img src="images/input_dataset.png" width="420"/>
+
+The classes are not linearly separable.  
+No straight line can solve this problem.
+
+---
+
+### Learned Decision Boundary (After Training)
+
+<img src="images/classified_dataset.png" width="420"/>
+
+The neural network bends space and discovers a separating curve.  
+Learning is visible: the model has captured structure instead of memorizing points.
+
+---
+
 ## What You Should Take Away
 
 After completing these notebooks, you should understand:
@@ -104,7 +147,8 @@ After completing these notebooks, you should understand:
 - How computation graphs are built
 - How backpropagation works at a mechanical level
 - How gradients flow through neural networks
-- Why neural network learning is fundamentally simple math applied repeatedly
+- How networks transform representations internally
+- What learning looks like geometrically
 
 Neural networks may look complex, but they are built from very small, understandable pieces.
 
@@ -114,8 +158,39 @@ Neural networks may look complex, but they are built from very small, understand
 
 - The **core code** shows the implementation
 - This folder explains the reasoning behind it
+- The demo shows the behavior that emerges from it
 
-Together, they form a complete learning resource for understanding backpropagation from **first principles**.
+Together, they form a complete learning path from
+
+```text
+          raw math
+             │
+             ▼
+        DERIVATIVES
+             │
+             ▼
+   scalar operations (Value)
+             │
+             ▼
+          NEURONS
+     weighted sums + bias
+             │
+             ▼
+          NETWORKS
+     layers + composition
+             │
+             ▼
+        OPTIMIZATION
+    loss → gradients → update
+             │
+             ▼
+     LEARNED FUNCTION
+  geometry in input space
+             │
+             ▼
+     DECISION BOUNDARY
+   behavior you can see
+```
 
 ---
 
